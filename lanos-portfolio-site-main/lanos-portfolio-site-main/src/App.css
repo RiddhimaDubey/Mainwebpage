@@ -1,0 +1,244 @@
+/* App-specific styles */
+main {
+  min-height: calc(100vh - 120px);
+  padding-top: 60px;
+  scroll-padding-top: 60px;
+  background-color: var(--primary-color);
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(0, 194, 255, 0.15), transparent 50%),
+              radial-gradient(circle at bottom left, rgba(255, 62, 108, 0.15), transparent 50%),
+              radial-gradient(circle at center, rgba(0, 194, 255, 0.05), transparent 60%);
+  z-index: -1;
+}
+
+/* Section transitions */
+section {
+  position: relative;
+}
+
+section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--primary-color));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Particle animation */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Animated background elements */
+.bg-element {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.15;
+  z-index: -1;
+}
+
+.bg-element-1 {
+  width: 500px;
+  height: 500px;
+  background-color: var(--accent-color);
+  top: 20%;
+  right: -150px;
+  animation: float 8s ease-in-out infinite;
+}
+
+.bg-element-2 {
+  width: 600px;
+  height: 600px;
+  background-color: var(--accent-color-alt);
+  bottom: 20%;
+  left: -200px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+.bg-element-3 {
+  width: 400px;
+  height: 400px;
+  background-color: var(--accent-color);
+  top: 60%;
+  right: 10%;
+  animation: float 12s ease-in-out infinite;
+  opacity: 0.1;
+}
+
+.bg-element-4 {
+  width: 350px;
+  height: 350px;
+  background-color: var(--accent-color-alt);
+  top: 30%;
+  left: 10%;
+  animation: float 9s ease-in-out infinite reverse;
+  opacity: 0.1;
+}
+
+/* Button hover effects */
+.btn:hover .btn-fill {
+  transform: translateX(0) !important;
+}
+
+/* Section animations */
+.fade-in {
+  opacity: 0;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.slide-left {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.slide-right {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+/* Card styles */
+.card {
+  background: rgba(30, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Animated underline for links */
+.animated-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: color var(--transition-medium);
+}
+
+.animated-link:hover {
+  color: var(--accent-color);
+}
+
+.animated-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent-color);
+  transition: width var(--transition-medium);
+}
+
+.animated-link:hover::after {
+  width: 100%;
+}
+
+/* Footer specific link styles */
+footer .animated-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem 0;
+}
+
+footer .animated-link:hover {
+  color: var(--accent-color);
+}
+
+footer .animated-link::after {
+  bottom: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .bg-element-1, .bg-element-2, .bg-element-3, .bg-element-4 {
+    opacity: 0.08;
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Subscription form responsive styles */
+.subscription-form {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .subscription-form {
+    flex-direction: column;
+  }
+}
+
+/* Form container styles */
+.form-container {
+  margin: 0;
+  padding: 0.75rem;
+  position: relative;
+}
+
+/* Ensure forms are visible when opened */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Add styles for form pages */
+.form-page {
+  min-height: 100vh;
+  padding-top: 60px;
+  position: relative;
+}

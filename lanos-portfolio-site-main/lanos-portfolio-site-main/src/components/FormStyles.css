@@ -1,0 +1,380 @@
+/* Registration Section Styles */
+.registration-section {
+  padding: 6rem 2rem;
+  background-color: rgba(15, 15, 15, 0.8);
+  min-height: 100vh;
+}
+
+.registration-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+.registration-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.registration-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #6e8efb, #00c2ff, #27ae60);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.registration-header p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.registration-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.registration-card {
+  border-radius: 12px;
+  padding: 2rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registration-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.registration-card h2 {
+  margin: 1rem 0;
+  font-size: 1.8rem;
+}
+
+.registration-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.registration-card.student {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+}
+
+.registration-card.professional {
+  background-color: #000000;
+  border: 1px solid #333;
+}
+
+.registration-card.institution {
+  background-color: #000000;
+  border: 1px solid #333;
+}
+
+.registration-description {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+/* Common Form Styles */
+.form-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #000000;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 2rem;
+  border: 1px solid #333;
+  color: var(--text-color);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 5px;
+  color: var(--text-color);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.custom-select {
+  cursor: pointer;
+  appearance: none;
+  background-color: #1a1a1a;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+  color: var(--text-color);
+}
+
+.custom-select option {
+  background-color: #000000;
+  color: var(--text-color);
+  padding: 10px;
+}
+
+select {
+  background-color: #1a1a1a !important;
+  color: var(--text-color) !important;
+}
+
+select option {
+  background-color: #000000 !important;
+  color: var(--text-color) !important;
+  padding: 10px;
+}
+
+select:focus {
+  outline: none;
+  border-color: #333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.2);
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.action-button {
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Success Message Styles */
+.success-message {
+  background-color: rgba(0, 194, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 600px;
+  margin: 2rem auto 0;
+}
+
+.success-message h3 {
+  color: #00c2ff;
+  margin-bottom: 1rem;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: white;
+}
+
+/* Student Form Specific Styles */
+.student-form-container {
+  border-color: rgba(110, 142, 251, 0.2);
+}
+
+.student-form-container h2 {
+  color: #6e8efb;
+}
+
+.student-form-container .action-button {
+  background-color: #6e8efb;
+}
+
+.student-form-container .action-button:hover {
+  background-color: #5a7df9;
+}
+
+.student-form-container .success-icon {
+  background-color: #6e8efb;
+}
+
+.student-form-container .success-message h3 {
+  color: #6e8efb;
+}
+
+/* Professional Form Specific Styles */
+.professional-form-container {
+  border-color: #333;
+  background-color: #000000;
+}
+
+.professional-form-container h2 {
+  color: var(--text-color);
+}
+
+.professional-form-container .action-button {
+  background-color: #333;
+  color: var(--text-color);
+}
+
+.professional-form-container .action-button:hover {
+  background-color: #444;
+}
+
+.professional-form-container .success-icon {
+  background-color: #00c2ff;
+}
+
+.professional-form-container .success-message h3 {
+  color: #00c2ff;
+}
+
+/* Institution Form Specific Styles */
+.institution-form-container {
+  border-color: #333;
+  background-color: #000000;
+}
+
+.institution-form-container h2 {
+  color: var(--text-color);
+}
+
+.institution-form-container .action-button {
+  background-color: #333;
+  color: var(--text-color);
+}
+
+.institution-form-container .action-button:hover {
+  background-color: #444;
+}
+
+.institution-form-container .success-icon {
+  background-color: #27ae60;
+}
+
+.institution-form-container .success-message h3 {
+  color: #27ae60;
+}
+
+/* Checkbox and Radio Button Styles */
+.checkbox-group,
+.radio-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-item,
+.radio-item {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-item input,
+.radio-item input {
+  margin-right: 0.5rem;
+}
+
+/* Form Validation Styles */
+.error-message {
+  color: #ff3b30;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Form Button Styles */
+.form-button {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-button {
+  background-color: #6e8efb;
+  color: white;
+}
+
+.secondary-button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1.5rem;
+  }
+  
+  .checkbox-group,
+  .radio-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Footer Styles */
+.form-footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #6e8efb, #00c2ff);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(110, 142, 251, 0.4);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 320px;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #00c2ff, #6e8efb);
+  box-shadow: 0 12px 20px rgba(0, 194, 255, 0.6);
+  transform: translateY(-3px);
+}
+
+.submit-button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}

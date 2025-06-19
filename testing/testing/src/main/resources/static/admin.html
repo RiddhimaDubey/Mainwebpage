@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Student Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            border-bottom: 2px solid #e1e5e9;
+            margin-bottom: 30px;
+        }
+
+        .nav-tab {
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .referral-stats {
+            background: white;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .referral-stats h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .referral-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .referral-item:last-child {
+            border-bottom: none;
+        }
+
+        .referral-code {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .referral-count {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: 600;
+        }
+
+        .registrations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .registrations-table th,
+        .registrations-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .registrations-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .registrations-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .referral-badge {
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .refresh-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .refresh-btn:hover {
+            background: #5a6fd8;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                text-align: left;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .registrations-table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Admin Dashboard</h1>
+            <p>Student Registration & Referral Analytics</p>
+        </div>
+
+        <div class="content">
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showTab('overview')">Overview</button>
+                <button class="nav-tab" onclick="showTab('referrals')">Referral Analytics</button>
+                <button class="nav-tab" onclick="showTab('registrations')">All Registrations</button>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <button class="refresh-btn" onclick="loadOverviewData()">🔄 Refresh Data</button>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalRegistrations">-</div>
+                        <div class="stat-label">Total Registrations</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalReferrals">-</div>
+                        <div class="stat-label">Referral Registrations</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="directRegistrations">-</div>
+                        <div class="stat-label">Direct Registrations</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="activeCodes">7</div>
+                        <div class="stat-label">Active Referral Codes</div>
+                    </div>
+                </div>
+
+                <div class="referral-stats">
+                    <h3>🎯 Top Referral Codes</h3>
+                    <div id="topReferrals">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>Loading referral statistics...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Referral Analytics Tab -->
+            <div id="referrals" class="tab-content">
+                <button class="refresh-btn" onclick="loadReferralData()">🔄 Refresh Data</button>
+                
+                <div class="referral-stats">
+                    <h3>📈 Referral Code Performance</h3>
+                    <div id="referralAnalytics">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>Loading referral analytics...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Registrations Tab -->
+            <div id="registrations" class="tab-content">
+                <button class="refresh-btn" onclick="loadRegistrations()">🔄 Refresh Data</button>
+                
+                <div class="referral-stats">
+                    <h3>📋 All Student Registrations</h3>
+                    <div id="registrationsList">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>Loading registrations...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+
+            // Load data for the tab
+            if (tabName === 'overview') {
+                loadOverviewData();
+            } else if (tabName === 'referrals') {
+                loadReferralData();
+            } else if (tabName === 'registrations') {
+                loadRegistrations();
+            }
+        }
+
+        // Load overview data
+        async function loadOverviewData() {
+            try {
+                const response = await fetch('/api/registrations/statistics');
+                if (response.ok) {
+                    const stats = await response.json();
+                    
+                    document.getElementById('totalRegistrations').textContent = stats.totalRegistrations || 0;
+                    document.getElementById('totalReferrals').textContent = stats.registrationsWithReferralCode || 0;
+                    document.getElementById('directRegistrations').textContent = stats.registrationsWithoutReferralCode || 0;
+                    
+                    // Load top referrals
+                    loadTopReferrals(stats.referralCodeStats);
+                }
+            } catch (error) {
+                console.error('Error loading overview data:', error);
+            }
+        }
+
+        // Load top referrals
+        function loadTopReferrals(referralStats) {
+            const container = document.getElementById('topReferrals');
+            
+            if (!referralStats || referralStats.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">No referral data available yet.</p>';
+                return;
+            }
+
+            let html = '';
+            referralStats.forEach(stat => {
+                const code = stat[0];
+                const count = stat[1];
+                html += `
+                    <div class="referral-item">
+                        <span class="referral-code">${code}</span>
+                        <span class="referral-count">${count} registrations</span>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Load referral analytics
+        async function loadReferralData() {
+            try {
+                const [statsResponse, codesResponse] = await Promise.all([
+                    fetch('/api/registrations/statistics'),
+                    fetch('/api/referral-codes/statistics')
+                ]);
+
+                if (statsResponse.ok && codesResponse.ok) {
+                    const stats = await statsResponse.json();
+                    const codes = await codesResponse.json();
+                    
+                    displayReferralAnalytics(stats, codes);
+                }
+            } catch (error) {
+                console.error('Error loading referral data:', error);
+            }
+        }
+
+        // Display referral analytics
+        function displayReferralAnalytics(stats, codes) {
+            const container = document.getElementById('referralAnalytics');
+            
+            let html = `
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">${codes.totalUsageCount || 0}</div>
+                        <div class="stat-label">Total Referral Usage</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.registrationsWithReferralCode || 0}</div>
+                        <div class="stat-label">Registrations with Referrals</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.registrationsWithoutReferralCode || 0}</div>
+                        <div class="stat-label">Direct Registrations</div>
+                    </div>
+                </div>
+            `;
+
+            if (codes.topReferralCodes && codes.topReferralCodes.length > 0) {
+                html += '<h4 style="margin: 20px 0 10px 0; color: #333;">Top Performing Referral Codes</h4>';
+                codes.topReferralCodes.forEach(code => {
+                    html += `
+                        <div class="referral-item">
+                            <div>
+                                <span class="referral-code">${code.code}</span>
+                                <span style="color: #666; margin-left: 10px;">(${code.ownerName})</span>
+                            </div>
+                            <span class="referral-count">${code.usageCount} uses</span>
+                        </div>
+                    `;
+                });
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // Load all registrations
+        async function loadRegistrations() {
+            try {
+                const response = await fetch('/api/registrations');
+                if (response.ok) {
+                    const registrations = await response.json();
+                    displayRegistrations(registrations);
+                }
+            } catch (error) {
+                console.error('Error loading registrations:', error);
+            }
+        }
+
+        // Display registrations
+        function displayRegistrations(registrations) {
+            const container = document.getElementById('registrationsList');
+            
+            if (!registrations || registrations.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">No registrations found.</p>';
+                return;
+            }
+
+            let html = `
+                <table class="registrations-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>College</th>
+                            <th>Course</th>
+                            <th>Referral Code</th>
+                            <th>Registered On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            registrations.forEach(reg => {
+                const referralBadge = reg.referralCode ? 
+                    `<span class="referral-badge">${reg.referralCode}</span>` : 
+                    '<span style="color: #666;">Direct</span>';
+                
+                html += `
+                    <tr>
+                        <td>${reg.fullName}</td>
+                        <td>${reg.emailAddress}</td>
+                        <td>${reg.mobileNumber}</td>
+                        <td>${reg.collegeName}</td>
+                        <td>${reg.preferredCourse || 'Not specified'}</td>
+                        <td>${referralBadge}</td>
+                        <td>${new Date(reg.createdAt).toLocaleDateString()}</td>
+                    </tr>
+                `;
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        // Load initial data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOverviewData();
+        });
+    </script>
+</body>
+</html> 

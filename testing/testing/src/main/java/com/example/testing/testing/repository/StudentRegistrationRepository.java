@@ -43,9 +43,6 @@ public interface StudentRegistrationRepository extends JpaRepository<StudentRegi
     // Find by referral code
     List<StudentRegistration> findByReferralCodeCode(String referralCode);
 
-    // Find by referral code owner
-    List<StudentRegistration> findByReferralCodeOwnerNameContainingIgnoreCase(String ownerName);
-
     // Count registrations by referral code
     @Query("SELECT s.referralCode.code, COUNT(s) FROM StudentRegistration s WHERE s.referralCode IS NOT NULL GROUP BY s.referralCode.code")
     List<Object[]> countByReferralCode();

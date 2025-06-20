@@ -26,7 +26,6 @@ public class ReferralCodeService {
 
         ReferralCode referralCode = new ReferralCode();
         referralCode.setCode(request.getCode());
-        referralCode.setOwnerName(request.getOwnerName());
         referralCode.setIsActive(true);
         referralCode.setUsageCount(0);
 
@@ -94,7 +93,6 @@ public class ReferralCodeService {
         }
 
         referralCode.setCode(request.getCode());
-        referralCode.setOwnerName(request.getOwnerName());
 
         ReferralCode updatedReferralCode = repository.save(referralCode);
         return ReferralCodeResponse.fromEntity(updatedReferralCode);
@@ -134,13 +132,6 @@ public class ReferralCodeService {
         return ReferralCodeResponse.fromEntity(updatedReferralCode);
     }
 
-    // Search referral codes by owner name
-    public List<ReferralCodeResponse> searchByOwnerName(String ownerName) {
-        return repository.findByOwnerNameContainingIgnoreCase(ownerName).stream()
-                .map(ReferralCodeResponse::fromEntity)
-                .collect(Collectors.toList());
-    }
-
     // Get top referral codes by usage
     public List<ReferralCodeResponse> getTopReferralCodes() {
         return repository.findTopReferralCodes().stream()
@@ -172,31 +163,12 @@ public class ReferralCodeService {
 
     // Initialize default referral codes
     public void initializeDefaultReferralCodes() {
-        String[] codes = {
-            "riddhima226100",
-            "pawan226100", 
-            "aayushmaan226100",
-            "priya226100",
-            "rahul226100",
-            "neha226100",
-            "vikram226100"
-        };
-
-        String[] owners = {
-            "Riddhima",
-            "Pawan",
-            "Aayushmaan", 
-            "Priya",
-            "Rahul",
-            "Neha",
-            "Vikram"
-        };
-
-        for (int i = 0; i < codes.length; i++) {
-            if (!repository.existsByCode(codes[i])) {
+        // Generate codes from 22610001 to 22610020
+        for (int i = 1; i <= 20; i++) {
+            String code = String.format("226100%02d", i);
+            if (!repository.existsByCode(code)) {
                 ReferralCodeRequest request = new ReferralCodeRequest();
-                request.setCode(codes[i]);
-                request.setOwnerName(owners[i]);
+                request.setCode(code);
                 createReferralCode(request);
             }
         }

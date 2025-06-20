@@ -30,6 +30,17 @@ const StudentRegistration = () => {
     
     // Load available courses and sources
     loadAvailableOptions();
+    // Fallback: set static courses if backend fails
+    setAvailableCourses([
+      'Full-stack web development (Java, Python, Node)',
+      '2D/3D Game Development (Unity, Unreal Engine)',
+      'CAD Designing and development (AutoCAD, SketchUP, Revit, STAD.pro, 3dx Max)',
+      'Cyber Security',
+      'Artificial Intelligence and Machine learning',
+      'Data Science and analysis',
+      'AR/VR Technologies',
+      'Not Sure Yet'
+    ]);
   }, []);
 
   const loadAvailableOptions = async () => {

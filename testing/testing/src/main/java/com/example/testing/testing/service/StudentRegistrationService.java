@@ -189,13 +189,6 @@ public class StudentRegistrationService {
                 .collect(Collectors.toList());
     }
 
-    // Get registrations by referral code owner
-    public List<StudentRegistrationResponse> getByReferralCodeOwner(String ownerName) {
-        return repository.findByReferralCodeOwnerNameContainingIgnoreCase(ownerName).stream()
-                .map(StudentRegistrationResponse::fromEntity)
-                .collect(Collectors.toList());
-    }
-
     // Advanced search with multiple criteria
     public List<StudentRegistrationResponse> searchByMultipleCriteria(
             String fullName, String collegeName, String cityTown,

@@ -149,14 +149,6 @@ public class StudentRegistrationController {
         return new ResponseEntity<>(registrations, HttpStatus.OK);
     }
 
-    // Get registrations by referral code owner
-    @GetMapping("/referral-owner/{ownerName}")
-    public ResponseEntity<List<StudentRegistrationResponse>> getByReferralCodeOwner(
-            @PathVariable String ownerName) {
-        List<StudentRegistrationResponse> registrations = service.getByReferralCodeOwner(ownerName);
-        return new ResponseEntity<>(registrations, HttpStatus.OK);
-    }
-
     // Get registration statistics
     @GetMapping("/statistics")
     public ResponseEntity<Map<String, Object>> getStatistics() {

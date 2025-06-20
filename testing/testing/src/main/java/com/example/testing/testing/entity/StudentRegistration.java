@@ -131,9 +131,13 @@ public class StudentRegistration {
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 
     public enum PreferredCourse {
-        FULL_STACK("Full Stack"),
-        DATA_SCIENCE("Data Science"),
-        DIGITAL_MARKETING("Digital Marketing"),
+        FULL_STACK("Full-stack web development (Java, Python, Node)"),
+        GAME_DEVELOPMENT("2D/3D Game Development (Unity, Unreal Engine)"),
+        CAD_DESIGN("CAD Designing and development (AutoCAD, SketchUP, Revit, STAD.pro, 3dx Max)"),
+        CYBER_SECURITY("Cyber Security"),
+        AI_ML("Artificial Intelligence and Machine learning"),
+        DATA_SCIENCE("Data Science and analysis"),
+        AR_VR("AR/VR Technologies"),
         NOT_SURE("Not Sure Yet");
 
         private final String displayName;

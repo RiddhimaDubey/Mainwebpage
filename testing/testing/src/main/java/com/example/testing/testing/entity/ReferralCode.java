@@ -32,9 +32,6 @@ public class ReferralCode {
     @Column(name = "code", nullable = false, unique = true)
     private String code;
 
-    @Column(name = "owner_name", nullable = false)
-    private String ownerName;
-
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 
@@ -71,9 +68,6 @@ public class ReferralCode {
     
     public String getCode() { return code; }
     public void setCode(String code) { this.code = code; }
-    
-    public String getOwnerName() { return ownerName; }
-    public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
     
     public Boolean getIsActive() { return isActive; }
     public void setIsActive(Boolean isActive) { this.isActive = isActive; }

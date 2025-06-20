@@ -25,9 +25,6 @@ public interface ReferralCodeRepository extends JpaRepository<ReferralCode, Long
     // Find all active codes
     List<ReferralCode> findByIsActiveTrue();
 
-    // Find by owner name
-    List<ReferralCode> findByOwnerNameContainingIgnoreCase(String ownerName);
-
     // Get top referral codes by usage count
     @Query("SELECT r FROM ReferralCode r ORDER BY r.usageCount DESC")
     List<ReferralCode> findTopReferralCodes();

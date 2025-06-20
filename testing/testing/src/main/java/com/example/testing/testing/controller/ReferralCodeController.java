@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.testing.testing.dto.ReferralCodeRequest;
@@ -124,14 +123,6 @@ public class ReferralCodeController {
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
-
-    // Search referral codes by owner name
-    @GetMapping("/search/owner")
-    public ResponseEntity<List<ReferralCodeResponse>> searchByOwnerName(
-            @RequestParam String ownerName) {
-        List<ReferralCodeResponse> referralCodes = service.searchByOwnerName(ownerName);
-        return new ResponseEntity<>(referralCodes, HttpStatus.OK);
     }
 
     // Get top referral codes by usage

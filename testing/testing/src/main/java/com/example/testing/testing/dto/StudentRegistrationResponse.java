@@ -20,7 +20,6 @@ public class StudentRegistrationResponse {
     private String hearAboutExam;
     private Boolean confirmation;
     private String referralCode;
-    private String referralCodeOwner;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -38,7 +37,6 @@ public class StudentRegistrationResponse {
         response.setHearAboutExam(entity.getHearAboutExam().getDisplayName());
         response.setConfirmation(entity.getConfirmation());
         response.setReferralCode(entity.getReferralCode() != null ? entity.getReferralCode().getCode() : null);
-        response.setReferralCodeOwner(entity.getReferralCode() != null ? entity.getReferralCode().getOwnerName() : null);
         response.setCreatedAt(entity.getCreatedAt());
         response.setUpdatedAt(entity.getUpdatedAt());
         return response;
@@ -77,9 +75,6 @@ public class StudentRegistrationResponse {
     
     public String getReferralCode() { return referralCode; }
     public void setReferralCode(String referralCode) { this.referralCode = referralCode; }
-    
-    public String getReferralCodeOwner() { return referralCodeOwner; }
-    public void setReferralCodeOwner(String referralCodeOwner) { this.referralCodeOwner = referralCodeOwner; }
     
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }

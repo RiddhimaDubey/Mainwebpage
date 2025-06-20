@@ -11,7 +11,6 @@ public class ReferralCodeResponse {
 
     private Long id;
     private String code;
-    private String ownerName;
     private Boolean isActive;
     private Integer usageCount;
     private LocalDateTime createdAt;
@@ -21,7 +20,6 @@ public class ReferralCodeResponse {
         ReferralCodeResponse response = new ReferralCodeResponse();
         response.setId(entity.getId());
         response.setCode(entity.getCode());
-        response.setOwnerName(entity.getOwnerName());
         response.setIsActive(entity.getIsActive());
         response.setUsageCount(entity.getUsageCount());
         response.setCreatedAt(entity.getCreatedAt());
@@ -35,9 +33,6 @@ public class ReferralCodeResponse {
     
     public String getCode() { return code; }
     public void setCode(String code) { this.code = code; }
-    
-    public String getOwnerName() { return ownerName; }
-    public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
     
     public Boolean getIsActive() { return isActive; }
     public void setIsActive(Boolean isActive) { this.isActive = isActive; }

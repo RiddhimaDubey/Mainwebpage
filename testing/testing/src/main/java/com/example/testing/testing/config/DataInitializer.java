@@ -18,12 +18,9 @@ public class DataInitializer implements CommandLineRunner {
         referralCodeService.initializeDefaultReferralCodes();
         System.out.println("✅ Default referral codes initialized successfully!");
         System.out.println("📋 Available referral codes:");
-        System.out.println("   - riddhima226100 (Riddhima)");
-        System.out.println("   - pawan226100 (Pawan)");
-        System.out.println("   - aayushmaan226100 (Aayushmaan)");
-        System.out.println("   - priya226100 (Priya)");
-        System.out.println("   - rahul226100 (Rahul)");
-        System.out.println("   - neha226100 (Neha)");
-        System.out.println("   - vikram226100 (Vikram)");
+        for (int i = 1; i <= 20; i++) {
+            String code = String.format("   - 226100%02d", i);
+            System.out.println(code);
+        }
     }
 } 

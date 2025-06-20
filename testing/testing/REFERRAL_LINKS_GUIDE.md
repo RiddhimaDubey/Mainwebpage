@@ -8,9 +8,10 @@ Your referral codes now work as **clickable links** that automatically take user
 ### 1. **Link Format**
 Each referral code becomes a clickable URL:
 ```
-http://localhost:8080/index.html?ref=riddhima226100
-http://localhost:8080/index.html?ref=pawan226100
-http://localhost:8080/index.html?ref=aayushmaan226100
+http://localhost:8080/index.html?ref=22610001
+http://localhost:8080/index.html?ref=22610002
+...
+http://localhost:8080/index.html?ref=22610020
 ```
 
 ### 2. **What Happens When Someone Clicks a Link**

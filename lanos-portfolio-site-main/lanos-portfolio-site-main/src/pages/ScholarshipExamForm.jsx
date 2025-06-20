@@ -17,17 +17,22 @@ const ScholarshipExamForm = () => {
     city: '',
     preferredCourse: '',
     heardFrom: '',
-    confirmation: false,
-    referralCode: ''
+    confirmation: false
   });
+
+  const [referralCode, setReferralCode] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
   const preferredCourseEnumMap = {
-    'Full Stack Web Development': 'FULL_STACK',
-    'Data Science': 'DATA_SCIENCE',
-    'Digital Marketing': 'DIGITAL_MARKETING',
+    'Full-stack web development (Java, Python, Node)': 'FULL_STACK',
+    '2D/3D Game Development (Unity, Unreal Engine)': 'GAME_DEVELOPMENT',
+    'CAD Designing and development (AutoCAD, SketchUP, Revit, STAD.pro, 3dx Max)': 'CAD_DESIGN',
+    'Cyber Security': 'CYBER_SECURITY',
+    'Artificial Intelligence and Machine learning': 'AI_ML',
+    'Data Science and analysis': 'DATA_SCIENCE',
+    'AR/VR Technologies': 'AR_VR',
     'Not Sure Yet': 'NOT_SURE',
   };
 
@@ -40,11 +45,14 @@ const ScholarshipExamForm = () => {
   };
 
   const location = useLocation();
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const referral = params.get('referral');
-    if (referral) {
-      setFormData(prev => ({ ...prev, referralCode: referral }));
+    const ref = params.get('ref') || params.get('referral');
+    if (ref && /^226100(0[1-9]|1[0-9]|20)$/.test(ref)) {
+      setReferralCode(ref);
+    } else {
+      setReferralCode("");
     }
   }, [location]);
 
@@ -81,7 +89,7 @@ const ScholarshipExamForm = () => {
         preferredCourse: preferredCourseEnumMap[formData.preferredCourse] || null,
         hearAboutExam: hearAboutExamEnumMap[formData.heardFrom],
         confirmation: formData.confirmation,
-        referralCode: formData.referralCode || ''
+        referralCode: referralCode || null
       };
       // Save to backend
       await studentRegistrationAPI.create(registrationData);
@@ -96,8 +104,7 @@ const ScholarshipExamForm = () => {
         city: '',
         preferredCourse: '',
         heardFrom: '',
-        confirmation: false,
-        referralCode: ''
+        confirmation: false
       });
     } catch (error) {
       // Log the full error object for debugging
@@ -212,7 +219,7 @@ const ScholarshipExamForm = () => {
         </h2>
       </div>
 
-      {/* Form container */}
+      {/* Show error if invalid referral code */}
       <motion.div 
         initial="hidden"
         animate="visible"
@@ -554,9 +561,13 @@ const ScholarshipExamForm = () => {
               }}
             >
               <option value="">Select a course (optional)</option>
-              <option value="Full Stack Web Development">Full Stack Web Development (Java / Python / Node.js)</option>
-              <option value="Data Science">Data Science</option>
-              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="Full-stack web development (Java, Python, Node)">Full-stack web development (Java, Python, Node)</option>
+              <option value="2D/3D Game Development (Unity, Unreal Engine)">2D/3D Game Development (Unity, Unreal Engine)</option>
+              <option value="CAD Designing and development (AutoCAD, SketchUP, Revit, STAD.pro, 3dx Max)">CAD Designing and development (AutoCAD, SketchUP, Revit, STAD.pro, 3dx Max)</option>
+              <option value="Cyber Security">Cyber Security</option>
+              <option value="Artificial Intelligence and Machine learning">Artificial Intelligence and Machine learning</option>
+              <option value="Data Science and analysis">Data Science and analysis</option>
+              <option value="AR/VR Technologies">AR/VR Technologies</option>
               <option value="Not Sure Yet">Not Sure Yet</option>
             </select>
           </div>

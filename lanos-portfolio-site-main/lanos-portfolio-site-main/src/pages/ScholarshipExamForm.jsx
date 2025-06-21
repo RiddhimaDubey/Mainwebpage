@@ -21,6 +21,7 @@ const ScholarshipExamForm = () => {
   });
 
   const [referralCode, setReferralCode] = useState("");
+  const [referralError, setReferralError] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -49,8 +50,19 @@ const ScholarshipExamForm = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const ref = params.get('ref') || params.get('referral');
-    if (ref && /^226100(0[1-9]|1[0-9]|20)$/.test(ref)) {
-      setReferralCode(ref);
+    
+    // Clear previous errors
+    setReferralError("");
+    
+    if (ref) {
+      // Check if it's a valid numeric referral code
+      if (/^226100(0[1-9]|1[0-9]|20)$/.test(ref)) {
+        setReferralCode(ref);
+      } else {
+        // Show error for invalid referral code
+        setReferralError("Invalid referral code. Please use a valid numeric referral code.");
+        setReferralCode("");
+      }
     } else {
       setReferralCode("");
     }
@@ -231,6 +243,28 @@ const ScholarshipExamForm = () => {
           marginBottom: '2rem'
         }}
       >
+        {referralError && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            style={{
+              backgroundColor: 'rgba(255, 76, 76, 0.1)',
+              border: '1px solid rgba(255, 76, 76, 0.3)',
+              borderRadius: '10px',
+              padding: '2rem',
+              textAlign: 'center',
+              marginBottom: '1.5rem',
+              color: '#ff4c4c'
+            }}
+          >
+            <h3 style={{ marginBottom: '1rem' }}>Invalid Referral Code</h3>
+            <p>{referralError}</p>
+            <p style={{ fontSize: '0.9rem', marginTop: '1rem', opacity: 0.8 }}>
+              Valid referral codes are numeric and follow the format: 22610001, 22610002, etc.
+            </p>
+          </motion.div>
+        )}
+        
         {submitStatus && (
           <motion.div
             initial={{ opacity: 0 }}

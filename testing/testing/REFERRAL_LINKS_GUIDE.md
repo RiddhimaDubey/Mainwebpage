@@ -23,39 +23,104 @@ http://localhost:8080/index.html?ref=22610020
 
 ## 📱 Available Referral Links
 
-### **Riddhima's Link**
+### **Referral Code 22610001**
 ```
-http://localhost:8080/index.html?ref=riddhima226100
-```
-
-### **Pawan's Link**
-```
-http://localhost:8080/index.html?ref=pawan226100
+http://localhost:8080/index.html?ref=22610001
 ```
 
-### **Aayushmaan's Link**
+### **Referral Code 22610002**
 ```
-http://localhost:8080/index.html?ref=aayushmaan226100
-```
-
-### **Priya's Link**
-```
-http://localhost:8080/index.html?ref=priya226100
+http://localhost:8080/index.html?ref=22610002
 ```
 
-### **Rahul's Link**
+### **Referral Code 22610003**
 ```
-http://localhost:8080/index.html?ref=rahul226100
-```
-
-### **Neha's Link**
-```
-http://localhost:8080/index.html?ref=neha226100
+http://localhost:8080/index.html?ref=22610003
 ```
 
-### **Vikram's Link**
+### **Referral Code 22610004**
 ```
-http://localhost:8080/index.html?ref=vikram226100
+http://localhost:8080/index.html?ref=22610004
+```
+
+### **Referral Code 22610005**
+```
+http://localhost:8080/index.html?ref=22610005
+```
+
+### **Referral Code 22610006**
+```
+http://localhost:8080/index.html?ref=22610006
+```
+
+### **Referral Code 22610007**
+```
+http://localhost:8080/index.html?ref=22610007
+```
+
+### **Referral Code 22610008**
+```
+http://localhost:8080/index.html?ref=22610008
+```
+
+### **Referral Code 22610009**
+```
+http://localhost:8080/index.html?ref=22610009
+```
+
+### **Referral Code 22610010**
+```
+http://localhost:8080/index.html?ref=22610010
+```
+
+### **Referral Code 22610011**
+```
+http://localhost:8080/index.html?ref=22610011
+```
+
+### **Referral Code 22610012**
+```
+http://localhost:8080/index.html?ref=22610012
+```
+
+### **Referral Code 22610013**
+```
+http://localhost:8080/index.html?ref=22610013
+```
+
+### **Referral Code 22610014**
+```
+http://localhost:8080/index.html?ref=22610014
+```
+
+### **Referral Code 22610015**
+```
+http://localhost:8080/index.html?ref=22610015
+```
+
+### **Referral Code 22610016**
+```
+http://localhost:8080/index.html?ref=22610016
+```
+
+### **Referral Code 22610017**
+```
+http://localhost:8080/index.html?ref=22610017
+```
+
+### **Referral Code 22610018**
+```
+http://localhost:8080/index.html?ref=22610018
+```
+
+### **Referral Code 22610019**
+```
+http://localhost:8080/index.html?ref=22610019
+```
+
+### **Referral Code 22610020**
+```
+http://localhost:8080/index.html?ref=22610020
 ```
 
 ## 🚀 How to Use Referral Links
@@ -87,10 +152,10 @@ http://localhost:8080/index.html?ref=vikram226100
 GET /api/registrations/statistics
 
 # Get registrations by specific referral code
-GET /api/registrations/referral/riddhima226100
+GET /api/registrations/referral/22610001
 
 # Get registrations by referral code owner
-GET /api/registrations/referral-owner/Riddhima
+GET /api/registrations/referral-owner/22610001
 
 # Get referral code usage statistics
 GET /api/referral-codes/statistics
@@ -98,29 +163,29 @@ GET /api/referral-codes/statistics
 
 ## 🎯 Example Workflow
 
-### **Scenario: Riddhima wants to refer friends**
+### **Scenario: Using Referral Code 22610001**
 
-1. **Riddhima** gets her referral link:
+1. **User** gets the referral link:
    ```
-   http://localhost:8080/index.html?ref=riddhima226100
+   http://localhost:8080/index.html?ref=22610001
    ```
 
-2. **Riddhima** shares the link on WhatsApp:
+2. **User** shares the link on WhatsApp:
    ```
    "Hey! Check out this amazing program: 
-   http://localhost:8080/index.html?ref=riddhima226100"
+   http://localhost:8080/index.html?ref=22610001"
    ```
 
 3. **Friend clicks** the link and sees:
    - Registration form opens
-   - Referral code "riddhima226100" is pre-filled
+   - Referral code "22610001" is pre-filled
    - Message shows "🎁 Referral Code Applied!"
 
 4. **Friend registers** normally
 
 5. **System records**:
-   - Registration linked to Riddhima's code
-   - Riddhima's usage count increases by 1
+   - Registration linked to referral code 22610001
+   - Usage count increases by 1
    - Analytics updated automatically
 
 ## 🌐 Production Deployment
@@ -130,12 +195,12 @@ When deploying to production, replace `localhost:8080` with your actual domain:
 
 **Development:**
 ```
-http://localhost:8080/index.html?ref=riddhima226100
+http://localhost:8080/index.html?ref=22610001
 ```
 
 **Production:**
 ```
-https://yourdomain.com/index.html?ref=riddhima226100
+https://yourdomain.com/index.html?ref=22610001
 ```
 
 ### **Update Referral Links Page**
@@ -157,7 +222,7 @@ The referral links page automatically shows the correct domain based on where it
 
 ### **URL Parameter**
 - Parameter name: `ref`
-- Example: `?ref=riddhima226100`
+- Example: `?ref=22610001`
 - Automatically pre-fills the referral code field
 
 ### **Form Behavior**
